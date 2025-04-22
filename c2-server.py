@@ -25,7 +25,7 @@ class CommandStore:
     def register_client(self, client_id):
         if client_id not in self.client_commands:
             self.client_commands[client_id] = []
-            logger.info(f"Client registered: {client_id}")
+            logger.info(f"Client registered: {client_id} Hello from server")
     
     def add_command(self, client_id, command):
         # Generate a unique command ID
@@ -118,6 +118,7 @@ async def get_commands(request):
     data = await request.json()
     client_id = data.get("client_id")
     
+    
     if not client_id:
         return web.json_response({"status": "error", "message": "Client ID required"}, status=400)
     
@@ -127,7 +128,7 @@ async def get_commands(request):
 async def submit_result(request):
     data = await request.json()
     cmd_id = data.get("cmd_id")
-    result = data.get("result")
+    result = data.get("Connection Created.. Hello")
     
     if not cmd_id or result is None:
         return web.json_response({"status": "error", "message": "Command ID and result required"}, status=400)
